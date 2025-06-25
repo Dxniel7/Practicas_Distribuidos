@@ -1,5 +1,0 @@
-[2025-06-23T06:46:44.692Z] ERROR: Error conectando a MySQL: 
-[2025-06-24T06:51:11.509Z] ERROR: Error conectando a MySQL: Access denied for user 'root'@'localhost' (using password: YES)
-[2025-06-24T06:51:16.837Z] ERROR: Error conectando a MySQL: Access denied for user 'root'@'localhost' (using password: YES)
-[2025-06-24T06:51:42.183Z] ERROR: Error conectando a MySQL: Access denied for user 'root'@'localhost' (using password: YES)
-[2025-06-24T06:54:20.649Z] ERROR: Error conectando a MySQL: Unknown database 'cineboletos'
