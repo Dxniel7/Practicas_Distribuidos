@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Tu Panadería Favorita!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f8b400">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>¡Bienvenido a La Panadería del Barrio!</h1>
+            <p>¡El mejor pan recién horneado, directo a tu hogar!</p>
+        </header>
+
+        <div class="content">
+            <h2>Selecciona tus panes favoritos:</h2>
+            <div id="productos"></div>
+
+            <h3>Datos de Compra:</h3>
+            <input type="text" id="nombreCliente" placeholder="Ingresa tu nombre" class="input-field">
+            <button onclick="comprarPan()" class="btn">Realizar Compra</button>
+            <p id="mensaje"></p>
+
+            <h3>Notificaciones:</h3>
+            <div id="notificaciones" class="notificaciones"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Registro del Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(reg => console.log('Service Worker registrado', reg))
+                .catch(err => console.error('Error al registrar Service Worker', err));
+        }
+    </script>
+</body>
+</html>
