@@ -1,28 +1,71 @@
 # Prácticas de Sistemas Distribuidos
 
-Este repositorio contiene las soluciones para las prácticas de la asignatura de Sistemas Distribuidos. A continuación, se detalla la estructura del proyecto y las instrucciones para ejecutar las prácticas de la 3 a la 5.
+Este repositorio contiene las soluciones para las prácticas de la asignatura de Sistemas Distribuidos. A continuación, se detalla la estructura del proyecto y las instrucciones para compilar y ejecutar cada práctica.
 
-De igual pmanera se proporciona el enlace al repositorio de GitHub. 
-
-https://github.com/Dxniel7/Practicas_Distribuidos
+**Enlace al Repositorio de GitHub:**
+[https://github.com/Dxniel7/Practicas_Distribuidos](https://github.com/Dxniel7/Practicas_Distribuidos)
 
 ---
 
 ### **Consideraciones Generales Importantes:**
 
-* **Conector JDBC de MySQL:** Las prácticas 4 y 5 requieren conectividad con una base de datos MySQL. Es indispensable el **conector JDBC de MySQL** (por ejemplo, `mysql-connector-j-9.2.0.jar` o la versión más reciente).
+* **Conector JDBC de MySQL:** Las prácticas que requieren conexión a una base de datos (Prácticas 4 y 5) necesitan el **conector JDBC de MySQL** (por ejemplo, `mysql-connector-j-9.2.0.jar`). Asegúrate de que el archivo `.jar` esté en la ruta correcta o incluido en el `classpath` al compilar y ejecutar.
+* **Terminales Separadas:** Para las prácticas de cliente-servidor (2, 3, 4 y 5), necesitarás abrir varias terminales (como PowerShell o CMD en Windows) para ejecutar los componentes del servidor y del cliente de forma simultánea.
+* **Compilación Previa:** Antes de ejecutar los archivos Java, es fundamental compilarlos. Los comandos proporcionados a continuación incluyen los pasos de compilación necesarios.
+* **Errores `ClassNotFoundException`:** Si encuentras un error como `Error: Could not find or load main class`, asegúrate de estar ejecutando el comando `java` desde el directorio raíz de las clases compiladas y de usar el nombre de la clase sin la extensión `.java`.
 
-* **Terminales Separadas:** Para la mayoría de estas prácticas, necesitaremos abrir varias terminales (PowerShell o Símbolo del Sistema en Windows) simultáneamente para ejecutar el servidor de descubrimiento, el servidor de panadería y los clientes.
+---
 
-* **Compilación Previa:** Siempre es fundamental compilar los archivos Java antes de ejecutarlos. Los comandos proporcionados a continuación incluyen la compilación.
+### **Práctica 1 - Procesos e Hilos**
 
-* **Cambio en Práctica 5:** Se realizó un cambio en el constructor de `PanaderiaServidorRMI` de `protected` a `public` para permitir su instanciación por `ServidorRMI`. Asegúrate de que tu copia local del código refleje este cambio.
+**Descripción:** Esta práctica simula una panadería donde múltiples clientes (hilos) intentan comprar pan de forma concurrente de un stock compartido, demostrando el uso de `synchronized` para evitar condiciones de carrera.
+
+**Ubicación de los archivos:** `Práctica 1 - Procesos e Hilos/`
+
+**Pasos para la Ejecución:**
+
+1.  Abre una terminal y navega al directorio de la práctica:
+    ```bash
+    cd "Práctica 1 - Procesos e Hilos"
+    ```
+2.  **Compila la clase Java:**
+    ```bash
+    javac PanaderiaConcurrente.java
+    ```
+3.  **Ejecuta la simulación:**
+    ```bash
+    java PanaderiaConcurrente
+    ```
+
+---
+
+### **Práctica 2 - Cliente-Servidor**
+
+**Descripción:** Implementa un modelo cliente-servidor básico para una panadería. El servidor gestiona el stock de pan y atiende las peticiones de un cliente a la vez.
+
+**Ubicación de los archivos:** `Práctica 2 - Cliente-Servidor/`
+
+**Pasos para la Ejecución:**
+
+1.  Abre dos terminales y navega en ambas al directorio `Práctica 2 - Cliente-Servidor/`.
+2.  **Compila las clases:**
+    ```bash
+    javac PanaderiaServidor.java PanaderiaCliente.java
+    ```
+3.  **En la primera terminal (Servidor):** Inicia el servidor de la panadería. Se quedará esperando conexiones de clientes.
+    ```bash
+    java PanaderiaServidor
+    ```
+4.  **En la segunda terminal (Cliente):** Ejecuta el cliente para conectarte al servidor.
+    ```bash
+    java PanaderiaCliente
+    ```
 
 ---
 
 ### **Práctica 3 - Servidor-Multicliente**
 
-**Descripción:** Esta práctica implementa un servidor de panadería capaz de manejar múltiples clientes concurrentemente utilizando hilos, demostrando la capacidad de un servidor para atender múltiples peticiones.
+**Descripción:** Esta práctica implementa un servidor de panadería capaz de manejar múltiples clientes de forma concurrente utilizando hilos, demostrando la capacidad del servidor para atender varias peticiones simultáneamente.
 
 **Ubicación de los archivos:** `Práctica 3 - Servidor-Multicliente/`
 
@@ -37,77 +80,69 @@ https://github.com/Dxniel7/Practicas_Distribuidos
     ```bash
     java PanaderiaServidor
     ```
-4.  **En otra Terminal (Cliente 1):**
+4.  **En otras Terminales (Clientes):** Puedes abrir varias terminales para simular múltiples clientes.
     ```bash
     java PanaderiaCliente
     ```
-5.  **En otra Terminal (Cliente 2, etc.):**
-    ```bash
-    java PanaderiaCliente
-    ```
-    *(Puedes abrir tantos clientes como desees para probar la concurrencia).*
 
 ---
 
-### **Práctica 4 - Cliente-Servidor (Multi-cliente, Multi-servidor con Servidor de Descubrimiento)**
+### **Práctica 4 - Multi-cliente, Multi-servidor con Servidor de Descubrimiento**
 
-**Descripción:** Esta práctica extiende la arquitectura cliente-servidor para incluir un "Servidor de Descubrimiento", que permite a múltiples servidores de panadería registrarse y a los clientes encontrarlos dinámicamente. La persistencia del stock de pan se gestiona a través de una base de datos MySQL.
+**Descripción:** Esta práctica extiende la arquitectura para incluir un "Servidor de Descubrimiento", que permite a múltiples servidores de panadería registrarse y a los clientes encontrarlos dinámicamente. La persistencia del stock se gestiona a través de una base de datos MySQL.
 
 **Ubicación de los archivos:** `Práctica 4 - C-S_Panadeeria/`
 
-**Requisito:** **MySQL debe estar ejecutándose** y la base de datos `panaderia` con la tabla `inventario` inicializada. Podemos usar el archivo `Script.sql`.
+**Requisitos:**
+* Tener **MySQL** en ejecución.
+* Haber creado la base de datos `panaderia` y la tabla `inventario` (puedes usar el archivo `Script.sql` proporcionado).
+* Tener el archivo `mysql-connector-j-9.2.0.jar` en el directorio de la práctica o en el classpath.
 
 **Pasos para la Ejecución:**
 
-1.  **Asegurarnos de tener `mysql-connector-j-9.2.0.jar`**.
-2.  Abre tu terminal y navega al directorio `Práctica 4 - C-S_Panadeeria/`.
-3.  **Compila todas las clases:**
+1.  Abre tres o más terminales y navega en todas al directorio `Práctica 4 - C-S_Panadeeria/`.
+2.  **Compila todas las clases** (el `-cp` indica el classpath para incluir el conector de MySQL):
     ```bash
     javac -cp ".;mysql-connector-j-9.2.0.jar" PanaderiaServidor.java PanaderiaCliente.java ServidorDescubrimiento.java
     ```
-4.  **En una Terminal (Servidor de Descubrimiento):**
+3.  **En la Terminal 1 (Servidor de Descubrimiento):**
     ```bash
     java -cp ".;mysql-connector-j-9.2.0.jar" ServidorDescubrimiento 5050
     ```
-    *(El puerto `5050` es un ejemplo; asegurarnos de que sea un puerto disponible y que todos los componentes que necesiten conectarse a este servidor lo utilicen. Mantén esta terminal abierta).*
-5.  **En otra Terminal (Servidor de Panadería 1):**
+4.  **En la Terminal 2 (Servidor de Panadería):** Puedes repetir este paso en más terminales con puertos diferentes.
     ```bash
     java -cp ".;mysql-connector-j-9.2.0.jar" PanaderiaServidor 5000
     ```
-    *(El puerto `5000` es un ejemplo. Podemos iniciar múltiples instancias de `PanaderiaServidor` en puertos diferentes para simular un entorno distribuido).*
-6.  **En otra Terminal (Cliente 1):**
+5.  **En la Terminal 3 (Cliente):**
     ```bash
-    java -cp ".;mysql-connector-j-9.2.0.jar" PanaderiaCliente 
+    java -cp ".;mysql-connector-j-9.2.0.jar" PanaderiaCliente
     ```
-    *(Ejemplo: `java -cp ".;mysql-connector-j-9.2.0.jar" PanaderiaCliente`. El cliente se conectará al servidor de panadería en el puerto especificado, el cual ya se habrá registrado con el servidor de descubrimiento).*
 
 ---
 
 ### **Práctica 5 - RMI (Java Remote Method Invocation)**
 
-**Descripción:** Esta práctica utiliza Java RMI para la comunicación distribuida, permitiendo que los clientes invoquen métodos en un objeto remoto (la panadería) que reside en el servidor. La gestión del stock también se realiza a través de MySQL.
+**Descripción:** Esta práctica utiliza Java RMI para la comunicación distribuida, permitiendo a los clientes invocar métodos en un objeto remoto (la panadería) que reside en el servidor. La gestión del stock también utiliza MySQL.
 
 **Ubicación de los archivos:** `Práctica 5 - RMI_Panaderia/`
 
-**Requisito:** **MySQL debe estar ejecutándose** y la base de datos `panaderia` con la tabla `inventario` inicializada.
+**Requisitos:**
+* Tener **MySQL** en ejecución y la base de datos inicializada.
+* Asegurarse de tener `mysql-connector-j-9.2.0.jar`.
+* **Importante:** Se debe cambiar la visibilidad del constructor `PanaderiaServidorRMI` de `protected` a `public` para que pueda ser instanciado por `ServidorRMI`.
 
 **Pasos para la Ejecución:**
 
-1.  **Nuevamente asegurarnos de tener `mysql-connector-j-9.2.0.jar`**.
-2.  **Abre tu terminal** y navega al directorio `Práctica 5 - RMI_Panaderia/`.
-3.  **Compila todas las clases:**
+1.  Abre dos terminales y navega en ambas al directorio `Práctica 5 - RMI_Panaderia/`.
+2.  **Compila todas las clases:**
     ```bash
     javac -cp ".;mysql-connector-j-9.2.0.jar" PanaderiaRMI.java PanaderiaServidorRMI.java ServidorRMI.java ClienteRMI.java
     ```
-6.  **En una Terminal (Servidor RMI):**
+3.  **En la Terminal 1 (Servidor RMI):**
     ```bash
     java -cp ".;mysql-connector-j-9.2.0.jar" ServidorRMI
     ```
-    *(Esta terminal iniciará el registro RMI en el puerto 1099 (o 1098 si está en uso) y el servidor de panadería. Mantén esta terminal abierta y en ejecución).*
-7.  **En otra Terminal (Cliente RMI):**
+4.  **En la Terminal 2 (Cliente RMI):**
     ```bash
     java -cp ".;mysql-connector-j-9.2.0.jar" ClienteRMI
     ```
-    *(El cliente se conectará al servidor RMI, solicitará tu nombre y te permitirá interactuar con la panadería de forma remota).*
-
----
