@@ -62,7 +62,7 @@ public class ServidorDescubrimiento {
 
     // Método para registrar un servidor (llamado desde el servidor de panadería)
     public static void registrarServidor(int puerto) {
-        try (Socket socket = new Socket("192.168.1.79", PUERTO_DESCUBRIMIENTO);
+        try (Socket socket = new Socket("localhost", PUERTO_DESCUBRIMIENTO);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
             // Enviar el puerto del servidor de panadería al servidor de descubrimiento
             out.println(puerto); // Enviar el puerto como mensaje
@@ -74,7 +74,7 @@ public class ServidorDescubrimiento {
 
     // Método para desregistrar un servidor (llamado desde el servidor de panadería)
     public static void desregistrarServidor(int puerto) {
-        try (Socket socket = new Socket("192.168.1.79", PUERTO_DESCUBRIMIENTO);
+        try (Socket socket = new Socket("localhost", PUERTO_DESCUBRIMIENTO);
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
             // Desregistrar el servidor de panadería
             servidoresPanaderia.remove("panaderia" + puerto);

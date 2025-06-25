@@ -4,7 +4,7 @@ import java.util.*;
 
 public class PanaderiaCliente {
     public static void main(String[] args) {
-        String servidorDescubrimiento = "192.168.1.79"; // Dirección del servidor de descubrimiento
+        String servidorDescubrimiento = "localhost"; // Dirección del servidor de descubrimiento
         int puertoDescubrimiento = 5050; // Puerto del servidor de descubrimiento
 
         final Socket[] socket = new Socket[1];  // Usamos un array para poder modificar su valor dentro del hook

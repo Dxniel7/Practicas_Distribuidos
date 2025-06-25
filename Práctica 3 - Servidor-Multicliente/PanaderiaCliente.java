@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class PanaderiaCliente {
     public static void main(String[] args) {
-        String servidor = "192.168.1.79"; // Dirección del servidor (cambiar o adaptar según sea necesario)
+        String servidor = "localhost"; // Dirección del servidor (cambiar o adaptar según sea necesario)
         int puerto = 5000; // Puerto del servidor
 
         try (Socket socket = new Socket(servidor, puerto);
