@@ -22,37 +22,55 @@ public class PanaderiaCliente {
 
             while (true) {
                 // Leer y mostrar el menú hasta que se reciba "Seleccione una opción:"
+                // Se modificó esta sección para ser más robusta
+                String menuCompleto = "";
                 String linea;
-                while (!(linea = in.readLine()).contains("Seleccione una opción")) {
-                    System.out.println(linea);
+                // Leer líneas hasta que el menú esté completo o la conexión se cierre
+                while ((linea = in.readLine()) != null && !linea.contains("Seleccione una opción")) {
+                    menuCompleto += linea + "\n";
                 }
-                System.out.println(linea); // Imprime "Seleccione una opción:"
+                if (linea == null) { // Si la conexión se cerró inesperadamente
+                    System.out.println("Servidor cerró la conexión.");
+                    break;
+                }
+                menuCompleto += linea; // Añade la línea "Seleccione una opción:"
+                System.out.println(menuCompleto); // Imprime el menú completo
+
 
                 // Leer opción del usuario
                 System.out.print("Opción: ");
                 String opcionStr = scanner.nextLine();
                 out.println(opcionStr); // Enviar opción al servidor
 
-                if (opcionStr.equals("1") || opcionStr.equals("3")) { 
-                    // Si es ver stock o salir, recibir respuesta del servidor
+                if (opcionStr.equals("1")) {
+                    // Si es ver stock, recibir respuesta del servidor
                     System.out.println("Servidor: " + in.readLine());
-                    if (opcionStr.equals("3")) break; // Salir del loop si elige salir
-                } else if (opcionStr.equals("2")) { 
+                } else if (opcionStr.equals("2")) {
                     // Comprar pan
-                    System.out.println(in.readLine()); // Esperar mensaje del servidor "Ingrese la cantidad..."
+                    // El servidor ya envía "Ingrese la cantidad..." como parte de su respuesta a la opción '2'
+                    String promptCantidad = in.readLine(); // Leer "Ingrese la cantidad..."
+                    if (promptCantidad == null) {
+                        System.out.println("Error: Servidor no envió el prompt de cantidad.");
+                        break;
+                    }
+                    System.out.println(promptCantidad);
+
                     String cantidad = scanner.nextLine();
                     out.println(cantidad); // Enviar cantidad al servidor
                     String respuesta = in.readLine(); // Recibir respuesta de compra
                     System.out.println("Servidor: " + respuesta);
+                } else if (opcionStr.equals("3")) {
+                    System.out.println("Servidor: " + in.readLine()); // Leer el mensaje de despedida del servidor
+                    break; // Salir del loop si elige salir
                 } else {
-                    System.out.println("Opcion no válida.");
+                    System.out.println("Servidor: " + in.readLine()); // Leer la respuesta de opción no válida
                 }
             }
 
             System.out.println("Saliendo de la panaderia... ¡Hasta luego!");
 
         } catch (IOException e) {
-            System.err.println("Error de conexion: " + e.getMessage());
+            System.err.println("Error de conexión: " + e.getMessage());
         }
     }
 }
