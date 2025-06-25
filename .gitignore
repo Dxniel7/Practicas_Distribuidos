@@ -28,9 +28,6 @@ target/
 .mvn/wrapper/maven-wrapper.jar
 .mvn/wrapper/maven-wrapper.properties
 
-# Visual Studio Code
-.vscode/
-
 # Logs genéricos
 logs/
 
