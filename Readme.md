@@ -9,7 +9,7 @@ Este repositorio contiene las soluciones para las prácticas de la asignatura de
 
 ### **Consideraciones Generales Importantes:**
 
-* **Conector JDBC de MySQL:** Las prácticas que requieren conexión a una base de datos (Prácticas 4 y 5) necesitan el **conector JDBC de MySQL** (por ejemplo, `mysql-connector-j-9.2.0.jar`). Asegúrate de que el archivo `.jar` esté en la ruta correcta o incluido en el `classpath` al compilar y ejecutar.
+* **Conector JDBC de MySQL:** Las prácticas que requieren conexión a una base de datos (Prácticas 4 y 5) necesitan el **conector JDBC de MySQL** (por ejemplo, `mysql-connector-j-9.2.0.jar`). Asegúrate de que el archivo `.jar` esté en la ruta correcta o incluido en el `classpath` al compilar y ejecutar, de igual manera aún así se incluye dentro de cada carpeta necesaria.
 * **Terminales Separadas:** Para las prácticas de cliente-servidor (2, 3, 4 y 5), necesitarás abrir varias terminales (como PowerShell o CMD en Windows) para ejecutar los componentes del servidor y del cliente de forma simultánea.
 * **Compilación Previa:** Antes de ejecutar los archivos Java, es fundamental compilarlos. Los comandos proporcionados a continuación incluyen los pasos de compilación necesarios.
 * **Errores `ClassNotFoundException`:** Si encuentras un error como `Error: Could not find or load main class`, asegúrate de estar ejecutando el comando `java` desde el directorio raíz de las clases compiladas y de usar el nombre de la clase sin la extensión `.java`.
@@ -96,7 +96,7 @@ Este repositorio contiene las soluciones para las prácticas de la asignatura de
 **Requisitos:**
 * Tener **MySQL** en ejecución.
 * Haber creado la base de datos `panaderia` y la tabla `inventario` (puedes usar el archivo `Script.sql` proporcionado).
-* Tener el archivo `mysql-connector-j-9.2.0.jar` en el directorio de la práctica o en el classpath.
+* Tener el archivo `mysql-connector-j-9.2.0.jar` en el directorio de la práctica o en el classpath, ya esta dicho archivo en la carpeta de la práctica.
 
 **Pasos para la Ejecución:**
 
@@ -128,8 +128,8 @@ Este repositorio contiene las soluciones para las prácticas de la asignatura de
 
 **Requisitos:**
 * Tener **MySQL** en ejecución y la base de datos inicializada.
-* Asegurarse de tener `mysql-connector-j-9.2.0.jar`.
-* **Importante:** Se debe cambiar la visibilidad del constructor `PanaderiaServidorRMI` de `protected` a `public` para que pueda ser instanciado por `ServidorRMI`.
+* Asegurarse de tener `mysql-connector-j-9.2.0.jar`, de igual manera ya esta presente en dicha carpeta.
+* **Importante:** Se cambió la visibilidad del constructor `PanaderiaServidorRMI` de `protected` a `public` para que pudiera ser instanciado por `ServidorRMI`.
 
 **Pasos para la Ejecución:**
 
