@@ -1,0 +1,43 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+dist/
+build/
+*.tgz
+
+# Java / Maven
+target/
+.classpath
+.project
+.settings/
+.factorypath
+.idea/ # Directorios de IDEs como IntelliJ IDEA
+.metadata/ # Directorios de IDEs como Eclipse
+*.iml # Archivos de IntelliJ IDEA
+*.log
+*.jar
+*.war
+*.zip
+*.rar
+*.class
+
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# Visual Studio Code
+.vscode/
+
+# Logs genéricos
+logs/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
