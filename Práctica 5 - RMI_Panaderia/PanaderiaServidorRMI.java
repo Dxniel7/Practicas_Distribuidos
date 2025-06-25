@@ -9,7 +9,7 @@ public class PanaderiaServidorRMI extends UnicastRemoteObject implements Panader
     private static final String PASSWORD = "root";
 
     
-    protected PanaderiaServidorRMI() throws RemoteException {
+    public PanaderiaServidorRMI() throws RemoteException {
         super(); 
 
         // Iniciar el hilo que generará panes en intervalos
