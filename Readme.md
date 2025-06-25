@@ -13,7 +13,7 @@ Este repositorio contiene las soluciones para las prácticas de la asignatura de
 * **Terminales Separadas:** Para las prácticas de cliente-servidor (2, 3, 4 y 5), necesitarás abrir varias terminales (como PowerShell o CMD en Windows) para ejecutar los componentes del servidor y del cliente de forma simultánea.
 * **Compilación Previa:** Antes de ejecutar los archivos Java, es fundamental compilarlos. Los comandos proporcionados a continuación incluyen los pasos de compilación necesarios.
 * **Errores `ClassNotFoundException`:** Si encuentras un error como `Error: Could not find or load main class`, asegúrate de estar ejecutando el comando `java` desde el directorio raíz de las clases compiladas y de usar el nombre de la clase sin la extensión `.java`.
-* * **Docker:** La práctica 7 requiere tener Docker instalado y en ejecución para orquestar los microservicios.
+* **Docker:** La práctica 7 requiere tener Docker instalado y en ejecución para orquestar los microservicios.
 
 
 ---
